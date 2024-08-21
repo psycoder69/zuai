@@ -1,0 +1,28 @@
+const processFile = async (file: File) => {
+        setFile(file);
+
+        const arrayBuffer = await file.arrayBuffer();
+        const pdf = await getDocument({ data: arrayBuffer }).promise;
+
+        const metaData = await pdf.getMetadata();
+
+        setMetadata(metaData.info);
+
+        let fullTextContent = "";
+
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum ++) {
+            const page = await pdf.getPage(pageNum);
+            const textContent = await page.getTextContent();
+            const pageText = textContent.items.map(item => {
+                if ("str" in item) {
+                    return item.str;
+                }
+
+                return "";
+            }).join(' ');
+
+            fullTextContent += (pageText + "\n");
+        }
+
+        setTextContetnt(fullTextContent);
+    };
