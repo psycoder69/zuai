@@ -61,7 +61,7 @@ const EvaluationCriteriaContainer = ({ criteria, index }: { criteria: Evaluation
                                     {
                                         criteria.strengths.map((strength, index) => (
                                             <div className="flex gap-2" key={index}>
-                                                <Image src="../svgs/correct.svg" alt="correct-check" width={20} height={20} priority={true} fetchPriority="high" decoding="async" className="size-5" />
+                                                <Image src="/svgs/correct.svg" alt="correct-check" width={20} height={20} priority={true} fetchPriority="high" decoding="async" className="size-5" />
 
                                                 <p className="text-sm text-[#3d404b] font-['Mont-Bold']">
                                                     {
@@ -87,7 +87,7 @@ const EvaluationCriteriaContainer = ({ criteria, index }: { criteria: Evaluation
                                     {
                                         criteria.scopeOfImprovement.map((improvementRemark, index) => (
                                             <div className="flex gap-2" key={index}>
-                                                <Image src="../svgs/warning.svg" alt="warning-icon" width={20} height={20} priority={true} fetchPriority="high" decoding="async" className="size-5" />
+                                                <Image src="/svgs/warning.svg" alt="warning-icon" width={20} height={20} priority={true} fetchPriority="high" decoding="async" className="size-5" />
 
                                                 <p className="text-sm text-[#3d404b] font-['Mont-Bold']">
                                                     {
@@ -109,11 +109,11 @@ const EvaluationCriteriaContainer = ({ criteria, index }: { criteria: Evaluation
 
                         <div className="flex items-center justify-center gap-5">
                             <button type="button" className="size-7 flex items-center justify-center rounded-full bg-[#eaf0f2] cursor-pointer">
-                                <Image src="../svgs/thumbsup.svg" alt="thumbs-up" width={16} height={16} priority={true} fetchPriority="high" decoding="async" className="size-4 shrink-0" />
+                                <Image src="/svgs/thumbsup.svg" alt="thumbs-up" width={16} height={16} priority={true} fetchPriority="high" decoding="async" className="size-4 shrink-0" />
                             </button>
 
                             <button type="button" className="size-7 flex items-center justify-center rounded-full bg-[#eaf0f2] cursor-pointer">
-                                <Image src="../svgs/thumbsdown.svg" alt="thumbs-down" width={16} height={16} priority={true} fetchPriority="high" decoding="async" className="size-4 shrink-0" />
+                                <Image src="/svgs/thumbsdown.svg" alt="thumbs-down" width={16} height={16} priority={true} fetchPriority="high" decoding="async" className="size-4 shrink-0" />
                             </button>
                         </div>
                     </div>

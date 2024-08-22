@@ -13,6 +13,7 @@ import { useFileStore } from "../store/FileStore";
 import { storeFileWithMetadata } from "../database/indexedDB";
 import { getMetadataFromFile } from "../lib/helper";
 import { useRouter } from "next/navigation";
+import { toast, useToast } from "./ui/use-toast";
 
 const FileUploader = () => {
     const { file, setFile } = useFileStore(state => ({
@@ -25,6 +26,9 @@ const FileUploader = () => {
     const [title, setTitle] = useState("");
     const [coursework, setCoursework] = useState("");
     const [subject, setSubject] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
+    const { toast } = useToast();
 
     const handleTitleInputChange = (event: ChangeEvent <HTMLInputElement>) => {
         const inputTitle = event.target.value.trim().replace(/\s+/g, ' ');
@@ -34,6 +38,8 @@ const FileUploader = () => {
 
     const uploadFileAndMetadata = async () => {
         try {
+            if (isLoading) return; else setIsLoading(true);
+
             if (file && title.length && coursework.length) {
                 const fileMetadata = await getMetadataFromFile(file, title, coursework, subject);
 
@@ -125,10 +131,20 @@ const FileUploader = () => {
                 </div>
 
                 <div className="flex flex-col items-start justify-center gap-2.5 self-stretch">
-                    <button className="w-full sm:w-fit h-[40px] inline-flex items-center justify-center gap-2 rounded-3xl whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#6947bf] p-2 pr-6 text-[18px] font-['Mont-Bold'] font-bold leading-[normal] hover:bg-[#6947bf] disabled:bg-[#adb8c9]" type="button" disabled={!(title.length >= 6 && (coursework === "Tok_Essay" || (coursework.length > 0 && subject.length > 0)))} onClick={uploadFileAndMetadata}>
-                        <Image src="../svgs/sparkle.svg" alt="sparkle" width={24} height={24} priority={true} fetchPriority="high" decoding="async" className="size-6 rounded-xl" />
+                    <button className="w-full sm:w-fit h-[40px] inline-flex items-center justify-center gap-2 rounded-3xl whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#6947bf] p-2 pr-6 text-[18px] font-['Mont-Bold'] font-bold leading-[normal] hover:bg-[#6947bf] disabled:bg-[#adb8c9] transition-all" type="button" disabled={!(title.length >= 6 && (coursework === "Tok_Essay" || (coursework.length > 0 && subject.length > 0)))} onClick={uploadFileAndMetadata}>
+                        <Image src="/svgs/sparkle.svg" alt="sparkle" width={24} height={24} priority={true} fetchPriority="high" decoding="async" className="size-6 rounded-xl" />
 
-                        <span className="text-white leading-5">Evaluate your Score</span>
+                        <div className="flex items-center justify-between gap-3">
+                            <span className="text-white leading-5">
+                                {`Evaluat` + (isLoading ? `ing ` : `e `) + `your Score` + (isLoading ? `...` : ``)}
+                            </span>
+
+                            {
+                                isLoading
+                                &&
+                                <span className="size-5 border-2 border-[#e5ecf3] b-t-2 border-t-transparent rounded-full animate-spin"></span>
+                            }
+                        </div>
                     </button>
                 </div>
             </div>

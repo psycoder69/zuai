@@ -1,5 +1,4 @@
 import Image from "next/image";
-import EvaluationImage from "../../public/images/evaluation.webp";
 import MyCourseworkSection from "./MyCourseworkSection";
 import ExploreCourseworkSection from "./ExploreCourseworkSection";
 import FileUploader from "./FileUploader";
@@ -12,7 +11,7 @@ const Evaluator = () => {
                     <FileUploader />
 
                     <div className="hidden h-full lg:flex items-end">
-                        <Image src={EvaluationImage} alt="evaluation-image" width={290} height={528} priority={true} fetchPriority="high" decoding="async" className="sm:w-[290px] h-auto" />
+                        <Image src="/images/evaluation.webp" alt="evaluation-image" width={290} height={528} priority={true} fetchPriority="high" decoding="async" className="sm:w-[290px] h-auto" />
                     </div>
                 </section>
 

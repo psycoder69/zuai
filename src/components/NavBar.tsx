@@ -9,7 +9,7 @@ const NavBar = () => {
                         <div className="h-[22.47px] flex-col justify-center items-center flex">
                             <div className="w-[34.89px] h-[14.47px] relative">
                                 <div className="w-[34.89px] h-[14.47px] left-[-0px] top-0 absolute">
-                                    <Image src="../svgs/ZuAI.svg" alt="ZuAI Logo" fill priority={true} />
+                                    <Image src="/svgs/ZuAI.svg" alt="ZuAI Logo" fill priority={true} />
                                 </div>
                             </div>
                             <div className="self-stretch pl-[26.63px] pr-[6.66px] justify-center items-center gap-[6.05px] inline-flex">
@@ -64,7 +64,7 @@ const NavBar = () => {
 
                 <div className="w-9 h-9 rounded-3xl justify-center items-center inline-flex cursor-pointer">
                     <div className="grow shrink basis-0 self-stretch p-0.5 bg-white rounded-[20px] border border-[#eaf0f2] justify-center items-center inline-flex">
-                        <Image src="../svgs/Teen.svg" alt="Teen Logo" width={32} height={32} priority={true} />
+                        <Image src="/svgs/Teen.svg" alt="Teen Logo" width={32} height={32} priority={true} />
                     </div>
                 </div>
             </div>

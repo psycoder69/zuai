@@ -75,7 +75,7 @@ const FileDropZone = () => {
                     <div role="presentation" tabIndex={0}>
                         <div className="flex flex-col items-center justify-center gap-[20px]">
                             <div className="flex flex-col items-center justify-center gap-[9px]">
-                                <Image src="../svgs/file.svg" alt="File Logo" width={38} height={48} priority={true} fetchPriority="high" decoding="async" />
+                                <Image src="/svgs/file.svg" alt="File Logo" width={38} height={48} priority={true} fetchPriority="high" decoding="async" />
 
                                 <div className="text-center">
                                     <p className="text-base font-['Mont-Bold'] font-bold text-neutrals-600 ">

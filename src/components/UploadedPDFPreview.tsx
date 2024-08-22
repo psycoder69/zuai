@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import * as pdfjs from "pdfjs-dist";
 import { useFileStore } from '../store/FileStore';
 
@@ -60,22 +61,21 @@ const UploadedPDFPreview = ({ fileURL }: { fileURL: string }) => {
                 </svg>
             </button>
 
-            <div className="w-[140px] h-auto max-h-[140px] flex items-start justify-center border border-[#d6dfe4] rounded-[6px] relative z-10 p-2 overflow-auto">
+            <div className="w-[140px] h-[140px] max-h-[140px] flex items-center justify-center border border-[#d6dfe4] rounded-[6px] relative z-10 p-2 overflow-auto">
                 {
                     images.length
                     ?
                     images.map((src, index) => (
-                        <img
+                        <Image
                             key={index}
                             src={src}
                             alt={`Page ${index + 1}`}
-                            className="w-full h-auto shadow-md"
+                            fill
+                            className="w-full h-auto object-contain shadow-md"
                         />
                     ))
                     :
-                    <div className="w-[120px] h-[120px] flex items-center justify-center">
-                        <span className="spinner"></span>
-                    </div>
+                    <span className="size-16 border-2 border-[#e5ecf3] border-t-transparent rounded-full animate-spin"></span>
                 }
             </div>
         </div>
