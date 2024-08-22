@@ -1,28 +1,13 @@
-import { getSortedMetadata } from "@/database/indexedDB";
-import { FileMetadata } from "@/schema/FileSchema";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Skeleton } from "./ui/skeleton";
 import Link from "next/link";
 import { useFileMetadataStore } from "@/store/FileMetadataStore";
 import EvaluatedCourseworkPreview from "./EvaluatedCourseworkPreview";
 
 const MyCourseworkSection = () => {
-    const { allMetadata, setAllMetadata } = useFileMetadataStore(state => ({
-        allMetadata: state.allMetadata,
-        setAllMetadata: state.setAllMetadata
-    }));
+    const allMetadata = useFileMetadataStore(state => state.allMetadata);
 
-    const [viewAll, setViewAll] = useState <boolean> (false);
-
-    useEffect(() => {
-        const getAllMetadataFromDatabase = async () => {
-            const allSortedMetadata = await getSortedMetadata();
-
-            setAllMetadata(allSortedMetadata);
-        };
-
-        getAllMetadataFromDatabase();
-    }, []);
+    const [viewAll, setViewAll] = useState<boolean>(false);
 
     return (
         <section className="w-full flex items-center justify-center self-stretch px-3 md:px-5 sm:px-4">
@@ -55,13 +40,17 @@ const MyCourseworkSection = () => {
                     }
                 </div>
 
-                <div className="w-full flex itens-center justify-center">
-                    <button type="button" className="text-base text-[#98a1bb] font-['Mont-Bold'] px-1 py-1.5 hover:underline" onClick={() => setViewAll(prev => !prev)}>
-                        {
-                            viewAll ? `view less` : `view all`
-                        }
-                    </button>
-                </div>
+                {
+                    (allMetadata && (allMetadata.length > 2))
+                    &&
+                    <div className="w-full flex itens-center justify-center">
+                        <button type="button" className="text-base text-[#98a1bb] font-['Mont-Bold'] px-1 py-1.5 hover:underline" onClick={() => setViewAll(prev => !prev)}>
+                            {
+                                viewAll ? `view less` : `view all`
+                            }
+                        </button>
+                    </div>
+                }
             </div>
         </section>
     );

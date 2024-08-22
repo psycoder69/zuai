@@ -58,11 +58,17 @@ const ExploreCourseworkSection = () => {
                     }
                 </div>
 
-                <div className="w-full flex itens-center justify-center">
-                    <button type="button" className="text-base text-[#98a1bb] font-['Mont-Bold'] px-1 py-1.5 hover:underline" onClick={() => setViewAll(prev => !prev)}>
-                        view all
-                    </button>
-                </div>
+                {
+                    (allMetadata && (allMetadata.length > 2))
+                    &&
+                    <div className="w-full flex itens-center justify-center">
+                        <button type="button" className="text-base text-[#98a1bb] font-['Mont-Bold'] px-1 py-1.5 hover:underline" onClick={() => setViewAll(prev => !prev)}>
+                            {
+                                viewAll ? `view less` : `view all`
+                            }
+                        </button>
+                    </div>
+                }
             </div>
         </section>
     );
