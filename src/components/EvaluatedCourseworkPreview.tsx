@@ -1,7 +1,7 @@
 import { FileMetadata } from "@/schema/FileSchema";
 import Image from "next/image";
 
-const EvaluatedCourseworkPreview = ({fileMetadata}: {fileMetadata: FileMetadata}) => {
+const EvaluatedCourseworkPreview = ({ fileMetadata }: { fileMetadata: FileMetadata }) => {
     return (
         <div className="w-full max-w-full flex gap-2 border border-[#f4ead8] rounded-xl p-1.5 cursor-pointer coursework-box">
             <div className="w-[120px] h-40 hidden sm:flex flex-col items-center justify-center border border-[#eaf0f2] rounded-lg bg-white p-2.5">
@@ -12,7 +12,7 @@ const EvaluatedCourseworkPreview = ({fileMetadata}: {fileMetadata: FileMetadata}
                 </div>
             </div>
 
-            <div className="flex flex-col items-start gap-1.5 flex-1">
+            <div className="h-40 flex flex-col items-start gap-1.5 flex-1 overflow-auto">
                 <div className="flex flex-col items-start justify-center gap-1 px-1 py-2">
                     <h4 className="text-lg text-[#3d404b] leading-tight font-['Mont-ExtraBold'] overflow-hidden text-ellipsis line-clamp-2">
                         {
@@ -20,13 +20,13 @@ const EvaluatedCourseworkPreview = ({fileMetadata}: {fileMetadata: FileMetadata}
                         }
                     </h4>
 
-                    <p className="text-[11px] text-[#7a8196] leading-normal font-['Mont-SemiBold'] overflow-hidden whitespace-wrap break-words text-ellipsis line-clamp-3">
+                    <p className="text-[11px] text-[#7a8196] leading-normal font-['Mont-SemiBold'] overflow-hidden whitespace-wrap break-words text-ellipsis line-clamp-2">
                         {
                             fileMetadata.extractedText
                         }
                     </p>
 
-                    <div className="flex items-start gap-1 flex-wrap mt-1">
+                    <div className="max-w-full max-h-full flex items-start gap-1 flex-wrap mt-1">
                         {
                             (fileMetadata.subject.length > 0)
                             &&
@@ -35,7 +35,7 @@ const EvaluatedCourseworkPreview = ({fileMetadata}: {fileMetadata: FileMetadata}
 
                                 <span className="text-[11px] text-[#5b6170] font-['Mont-Bold'] leading-normal">
                                     {
-                                        fileMetadata.subject
+                                        fileMetadata.subject.replaceAll("_", " ")
                                     }
                                 </span>
                             </div>
@@ -66,7 +66,7 @@ const EvaluatedCourseworkPreview = ({fileMetadata}: {fileMetadata: FileMetadata}
 
                             <span className="text-[11px] text-[#5b6170] font-['Mont-Bold'] leading-normal">
                                 {
-                                    fileMetadata.coursework.replace("_", " ")
+                                    fileMetadata.coursework.replaceAll("_", " ")
                                 }
                             </span>
                         </div>
