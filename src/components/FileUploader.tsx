@@ -123,7 +123,7 @@ const FileUploader = () => {
                                 Enter your essay title*(Required)
                             </p>
 
-                            <div className="w-[330px] h-10 flex items-center gap-6 rounded-3xl">
+                            <div className="w-full h-10 flex items-center gap-6 rounded-3xl">
                                 <Input id="title" name="title" placeholder="how nation works....." className="text-sm text-[#1e2026] font-['Mont-SemiBold'] border border-[#d6dfe4] rounded-3xl px-3 py-5 leading-4 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0" onChange={handleTitleInputChange} />
                             </div>
                         </div>
