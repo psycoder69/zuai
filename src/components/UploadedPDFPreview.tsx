@@ -9,7 +9,7 @@ const UploadedPDFPreview = ({ fileURL }: { fileURL: string }) => {
     const [images, setImages] = useState <string[]> ([]);
 
     useEffect(() => {
-        const renderPdf = async () => {
+        (async () => {
             if (!fileURL) return;
 
             try {
@@ -47,9 +47,7 @@ const UploadedPDFPreview = ({ fileURL }: { fileURL: string }) => {
             } catch (error: any) {
                 console.error(`${error.name}: ${error.message}`);
             }
-        };
-
-        renderPdf();
+        })();
     }, [fileURL]);
 
     return (

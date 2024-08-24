@@ -13,13 +13,11 @@ const Evaluator = () => {
     }));
 
     useEffect(() => {
-        const getAllMetadataFromDatabase = async () => {
+        (async () => {
             const allSortedMetadata = await getSortedMetadata();
 
             setAllMetadata(allSortedMetadata);
-        };
-
-        getAllMetadataFromDatabase();
+        })()
     }, []);
 
     return (

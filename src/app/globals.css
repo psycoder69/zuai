@@ -69,6 +69,13 @@
 }
 
 @font-face {
+  font-family: "Bricolage-SemiBold";
+  src: url("../../public/fonts/Bricolage-SemiBold.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 600
+}
+
+@font-face {
   font-family: "Mont-Normal";
   src: url("../../public/fonts/Mont-Normal.woff2") format("woff2");
   font-display: swap;

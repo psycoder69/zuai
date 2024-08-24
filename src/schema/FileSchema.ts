@@ -17,6 +17,7 @@ interface EvaluationResult {
 
 interface FileMetadata {
     fileId: string,
+    fileName: string,
     fileSizeInBytes: number;
     totalPages: number;
     totalWordCount: number;

@@ -1,5 +1,5 @@
 import { openDB } from "idb";
-import pako from "pako";
+import { gzipSync, gunzipSync } from "fflate";
 import { v4 as uuidv4 } from "uuid";
 import { EvaluationResult, FileMetadata } from "../schema/FileSchema";
 
@@ -33,7 +33,7 @@ export const storeFileWithMetadata = async (file: File, fileMetadata: FileMetada
         const fileId = uuidv4();
 
         const fileBuffer = await file.arrayBuffer();
-        const compressedFile = pako.gzip(new Uint8Array(fileBuffer));
+        const compressedFile = gzipSync(new Uint8Array(fileBuffer));
 
         const transaction = db.transaction(["files", "metadata"], "readwrite");
 
@@ -76,15 +76,15 @@ export const getFileAndMetadata = async (fileId: string) => {
 
         if (file.fileData) {
             try {
-                decompressedFile = pako.ungzip(file.fileData);
+                decompressedFile = gunzipSync(file.fileData);
             } catch (decompressionError) {
                 console.error('Error decompressing file data:', decompressionError);
                 throw new Error('Failed to decompress file data');
             }
         }
 
-        const fileBlob = new Blob([decompressedFile || file.fileData], { type: 'application/pdf' });
-        const fileObject = new File([fileBlob], 'retrieved.pdf', { type: 'application/pdf' });
+        const fileBlob = new Blob([decompressedFile || file.fileData], { type: "application/pdf" });
+        const fileObject = new File([fileBlob], "retrieved.pdf", { type: "application/pdf" });
 
         await transaction.done;
 
@@ -94,6 +94,58 @@ export const getFileAndMetadata = async (fileId: string) => {
         console.error(`${error.name}: ${error.message}`);
 
         throw new Error("File and metadata retrieval failed");
+    }
+};
+
+export const getFileById = async (fileId: string) => {
+    try {
+        const db = await setupDatabase();
+        const transaction = db.transaction("files", "readonly");
+        const fileStore = transaction.objectStore("files");
+
+        const { file } = await fileStore.get(fileId);
+
+        if (!file) throw new Error("File not found");
+
+        let decompressedFile: Uint8Array;
+
+        try {
+            decompressedFile = gunzipSync(file);
+        } catch (decompressionError) {
+            console.error("Error decompressing file data:", decompressionError);
+            throw new Error("Failed to decompress file data");
+        }
+
+        const fileBlob = new Blob([decompressedFile], { type: "application/pdf" });
+        const fileObject = new File([fileBlob], "retrieved.pdf", { type: "application/pdf" });
+
+        await transaction.done;
+
+        return fileObject;
+    } catch (error: any) {
+        console.error(`Failed to retrieve file`);
+        console.error(`${error.name}: ${error.message}`);
+        throw new Error("File retrieval failed");
+    }
+};
+
+export const getMetadataById = async (fileId: string) => {
+    try {
+        const db = await setupDatabase();
+        const transaction = db.transaction("metadata", "readonly");
+        const metadataStore = transaction.objectStore("metadata");
+
+        const metadata: FileMetadata = await metadataStore.get(fileId);
+
+        if (!metadata) throw new Error("Metadata not found");
+
+        await transaction.done;
+
+        return metadata;
+    } catch (error: any) {
+        console.error(`Failed to retrieve metadata`);
+        console.error(`${error.name}: ${error.message}`);
+        throw new Error("Metadata retrieval failed");
     }
 };
 

@@ -81,9 +81,9 @@ const FileUploader = () => {
                                         <SelectValue placeholder="Coursework Type" />
                                     </SelectTrigger>
                                     <SelectContent className="rounded-xl">
-                                        <SelectItem value="Tok_Essay" className="cursor-pointer rounded-lg">Tok Essay</SelectItem>
-                                        <SelectItem value="Extended_Essay" className="cursor-pointer rounded-lg">Extended Essay</SelectItem>
-                                        <SelectItem value="Internal_Assessment" className="cursor-pointer rounded-lg">Internal Assessment</SelectItem>
+                                        <SelectItem value="Tok_Essay" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-lg">Tok Essay</SelectItem>
+                                        <SelectItem value="Extended_Essay" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-lg">Extended Essay</SelectItem>
+                                        <SelectItem value="Internal_Assessment" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-lg">Internal Assessment</SelectItem>
                                     </SelectContent>
                                 </Select>
 
@@ -99,9 +99,9 @@ const FileUploader = () => {
                                                 (coursework === "Extended_Essay")
                                                 &&
                                                 <>
-                                                    <SelectItem value="Business_Management" className="cursor-pointer rounded-md">Business Management</SelectItem>
-                                                    <SelectItem value="Economics" className="cursor-pointer rounded-md">Economics</SelectItem>
-                                                    <SelectItem value="Language_and_Literature" className="cursor-pointer rounded-md">Language and Literature</SelectItem>
+                                                    <SelectItem value="Business_Management" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">Business Management</SelectItem>
+                                                    <SelectItem value="Economics" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">Economics</SelectItem>
+                                                    <SelectItem value="Language_and_Literature" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">Language and Literature</SelectItem>
                                                 </>
                                             }
 
@@ -109,7 +109,7 @@ const FileUploader = () => {
                                                 (coursework === "Internal_Assessment")
                                                 &&
                                                 <>
-                                                    <SelectItem value="Mathematics" className="cursor-pointer rounded-md">Mathematics</SelectItem>
+                                                    <SelectItem value="Mathematics" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">Mathematics</SelectItem>
                                                 </>
                                             }
                                         </SelectContent>
@@ -124,7 +124,7 @@ const FileUploader = () => {
                             </p>
 
                             <div className="w-full h-10 flex items-center gap-6 rounded-3xl">
-                                <Input id="title" name="title" placeholder="how nation works....." className="text-sm text-[#1e2026] font-['Mont-SemiBold'] border border-[#d6dfe4] rounded-3xl px-3 py-5 leading-4 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0" onChange={handleTitleInputChange} />
+                                <Input id="title" name="title" placeholder="how nation works....." className="max-w-[360px] text-sm text-[#1e2026] font-['Mont-SemiBold'] border border-[#d6dfe4] rounded-3xl px-3 py-5 leading-4 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0" onChange={handleTitleInputChange} />
                             </div>
                         </div>
                     </div>

@@ -4,18 +4,11 @@ import { useEffect, useState } from "react";
 import ScoreRadialChart from "./ScoreRadialChart";
 import EvaluationCriteriaContainer from "./EvaluationCriteriaContainer";
 import { EvaluationResult, FileMetadata } from "@/schema/FileSchema";
-import { getFileAndMetadata, updateEvaluationResult } from "@/database/indexedDB";
-import { usePathname } from "next/navigation";
+import { updateEvaluationResult } from "@/database/indexedDB";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getEvaluationResultFromAI } from "@/lib/gemini";
 
-const EvaluationScorecard = () => {
-    const pathname = usePathname();
-    const routes = pathname.split("/");
-    const fileId = routes[routes.length - 1];
-
-    const [file, setFile] = useState<File>();
-    const [fileMetadata, setFileMetadata] = useState<FileMetadata>();
+const EvaluationScorecard = ({ fileId, fileMetadata }: { fileId: string, fileMetadata: FileMetadata }) => {
     const [evaluationResult, setEvaluationResult] = useState<EvaluationResult>();
 
     const formatDate = (date: Date) => {
@@ -25,21 +18,6 @@ const EvaluationScorecard = () => {
 
         return `${day} ${month} ${year}`;
     };
-
-    useEffect(() => {
-        const setFileAndFileMetaData = async () => {
-            try {
-                const response = await getFileAndMetadata(fileId);
-
-                setFile(response.file);
-                setFileMetadata(response.fileMetadata);
-            } catch (error: any) {
-                console.error(`${error.name}: ${error.message}`);
-            }
-        };
-
-        setFileAndFileMetaData();
-    }, []);
 
     useEffect(() => {
         if (fileMetadata) {
@@ -64,7 +42,7 @@ const EvaluationScorecard = () => {
     }, [fileMetadata]);
 
     return (
-        <section className="w-full min-w-80 h-full flex flex-col items-start gap-3.5">
+        <section className="w-full lg:w-2/5 h-full flex flex-col items-start gap-3.5 rounded-3xl">
             {
                 evaluationResult
                     ?

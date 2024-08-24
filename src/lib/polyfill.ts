@@ -1,5 +1,3 @@
-import "core-js/full/promise/with-resolvers.js";
-
 export const promiseWithResolversPolyfill = () => {
     if (typeof Promise.withResolvers === 'undefined') {
         const polyfill = function <T>() {

@@ -10,13 +10,13 @@ import ScoreRadialChart from "./ScoreRadialChart";
 import { EvaluationCriterion } from "@/schema/FileSchema";
 
 const EvaluationCriteriaContainer = ({ criteria, index }: { criteria: EvaluationCriterion, index: number }) => {
-    const [isAccordionOpen, setIsAccordionOpen] = useState(true);
+    const [isAccordionOpen, setIsAccordionOpen] = useState(false);
     const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
     const alphabet = ['A', 'B', 'C', 'D', 'E'];
 
     return (
-        <Accordion type="single" collapsible className="w-full rounded-3xl bg-white p-4" defaultValue="item-1">
+        <Accordion type="single" collapsible className="w-full rounded-3xl bg-white p-4">
             <AccordionItem value="item-1" className="w-full border-none">
                 <AccordionTrigger className={`flex items-center gap-4 hover:no-underline accordian-trigger ${isAccordionOpen ? "pr-3 py-0" : "py-1"}`} onClick={() => { setIsAccordionOpen(prev => !prev); setIsDescriptionOpen(false); }}>
                     <div className={`${isAccordionOpen ? "size-[76px]" : "size-10"} shrink-0 relative transition-all duration-200`}>

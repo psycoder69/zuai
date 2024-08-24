@@ -71,6 +71,7 @@ const getMetadataFromFile = async (file: File, title: string, coursework: string
 
     return {
         fileId: "",
+        fileName: file.name,
         fileSizeInBytes: file.size,
         totalPages: pageCount,
         totalWordCount: wordCount,
