@@ -46,6 +46,16 @@ const EvaluatedCourseworkPreview = ({ fileMetadata }: { fileMetadata: FileMetada
 
                             <span className="text-[11px] text-[#5b6170] font-['Mont-Bold'] leading-normal">
                                 {
+                                    `${fileMetadata.totalPages} pages`
+                                }
+                            </span>
+                        </div>
+
+                        <div className="flex items-center gap-1 rounded-full bg-white p-0.5 pr-2.5">
+                            <Image src="/images/notes.png" alt="coursework" width={16} height={16} priority fetchPriority="high" decoding="async" />
+
+                            <span className="text-[11px] text-[#5b6170] font-['Mont-Bold'] leading-normal">
+                                {
                                     `${fileMetadata.totalWordCount} words`
                                 }
                             </span>

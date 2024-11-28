@@ -21,7 +21,7 @@ const getCourseCode = (coursework: string) => {
     if (coursework === "Internal_Assessment") return "IA";
     else if (coursework === "Extended_Essay") return "EE";
 
-    return "Tok";
+    return "TOK";
 };
 
 const getMetadataFromFile = async (file: File, title: string, coursework: string, subject: string): Promise <FileMetadata> => {
@@ -68,6 +68,8 @@ const getMetadataFromFile = async (file: File, title: string, coursework: string
         fileTextContent += (cleanedPageText + "\n");
         wordCount += calculateWordCount(pageText);
     }
+
+    console.log(fileTextContent);
 
     return {
         fileId: "",

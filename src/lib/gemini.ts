@@ -117,7 +117,7 @@ const getEvaluationResultFromAI = async (coursework: string, subject: string, ex
 
             const evalRes = (response.candidates[0].content.parts[0].text || "");
 
-            newEvaluationResult = JSON.parse(evalRes.replace(/^```json/, '').replace(/```$/, ''));
+            newEvaluationResult = JSON.parse(evalRes.replace(/```json/, '').replace(/```/, '').trim());
 
 			newEvaluationResult.evaluationDate = new Date();
         } else {

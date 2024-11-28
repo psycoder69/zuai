@@ -5,7 +5,9 @@ promiseWithResolversPolyfill();
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner"
+import { NavBar } from "@/components/NavBar";
+import { StreakPanel } from "@/components/StreakPanel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +28,13 @@ export default function RootLayout({
       </head>
 
       <body className={inter.className}>
-        {children}
+        <div className="size-full flex items-start flex-grow flex-shrink-0 basis-0 self-stretch bg-[#e5ecf3] relative">
+          <NavBar />
+
+          {children}
+
+          <StreakPanel />
+        </div>
 
         <Toaster />
       </body>

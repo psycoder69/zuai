@@ -5,6 +5,7 @@ import { GlobalWorkerOptions } from "pdfjs-dist";
 import { ChangeEvent, DragEvent, useRef, useState } from "react";
 import UploadedPDFPreview from "./UploadedPDFPreview";
 import { useFileStore } from "../store/FileStore";
+import { toast } from "sonner";
 
 GlobalWorkerOptions.workerSrc = `/pdf.worker.min.mjs`;
 
@@ -38,6 +39,8 @@ const FileDropZone = () => {
             setFile(files[0]);
 
             fileInputRef.current.value = "";
+
+            toast.success("File uploaded successfully", { style: { backgroundColor: "#fcfbfd", color: "#6947bf" } });
         }
     };
 
@@ -52,6 +55,8 @@ const FileDropZone = () => {
             setFile(files[0]);
 
             fileInputRef.current.value = "";
+
+            toast.success("File uploaded successfully");
         }
     };
 

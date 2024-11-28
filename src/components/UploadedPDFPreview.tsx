@@ -37,7 +37,7 @@ const UploadedPDFPreview = ({ fileURL }: { fileURL: string }) => {
                         await page.render(renderContext).promise;
 
                         const imageDataUrl = canvas.toDataURL("image/jpeg", 0.75);
-                        imagePromises.push(imageDataUrl);
+                        imagePromises.push(Promise.resolve(imageDataUrl));
                     }
                 }
 
@@ -59,7 +59,7 @@ const UploadedPDFPreview = ({ fileURL }: { fileURL: string }) => {
                 </svg>
             </button>
 
-            <div className="w-[140px] h-[140px] max-h-[140px] flex items-center justify-center border border-[#d6dfe4] rounded-[6px] relative z-10 p-2 overflow-auto">
+            <div className="w-[140px] h-[140px] max-h-[140px] flex flex-wrap items-center justify-center border border-[#d6dfe4] rounded-[6px] relative z-10 p-2 overflow-auto">
                 {
                     images.length
                     ?
@@ -68,7 +68,8 @@ const UploadedPDFPreview = ({ fileURL }: { fileURL: string }) => {
                             key={index}
                             src={src}
                             alt={`Page ${index + 1}`}
-                            fill
+                            width={140}
+                            height={140}
                             className="w-full h-auto object-contain shadow-md"
                         />
                     ))

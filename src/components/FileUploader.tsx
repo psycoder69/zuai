@@ -13,9 +13,8 @@ import { useFileStore } from "../store/FileStore";
 import { storeFileWithMetadata } from "../database/indexedDB";
 import { getMetadataFromFile } from "../lib/helper";
 import { useRouter } from "next/navigation";
-import { toast, useToast } from "./ui/use-toast";
 
-const FileUploader = () => {
+export const FileUploader = () => {
     const { file, setFile } = useFileStore(state => ({
         file: state.file,
         setFile: state.setFile
@@ -28,7 +27,8 @@ const FileUploader = () => {
     const [subject, setSubject] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const { toast } = useToast();
+    const extendedEssay = ["Business Management", "Economics", "Language and Literature", "Mathematics"];
+    const internalAssessment = ["Mathematics"];
 
     const handleTitleInputChange = (event: ChangeEvent <HTMLInputElement>) => {
         const inputTitle = event.target.value.trim().replace(/\s+/g, ' ');
@@ -65,7 +65,7 @@ const FileUploader = () => {
                 </span>
             </h1>
 
-            <div className="w-full flex flex-col items-center justify-center gap-8 mx-auto bg-[#fcfbfd] rounded-3xl p-3 lg:p-5">
+            <form id="form" name="form" className="w-full flex flex-col items-center justify-center gap-8 mx-auto bg-[#fcfbfd] rounded-3xl p-3 lg:p-5">
                 <div className="w-full flex flex-col items-start gap-3 lg:gap-6 rounded-2xl">
                     <FileDropZone />
 
@@ -99,9 +99,9 @@ const FileUploader = () => {
                                                 (coursework === "Extended_Essay")
                                                 &&
                                                 <>
-                                                    <SelectItem value="Business_Management" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">Business Management</SelectItem>
-                                                    <SelectItem value="Economics" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">Economics</SelectItem>
-                                                    <SelectItem value="Language_and_Literature" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">Language and Literature</SelectItem>
+                                                    {extendedEssay.map((subject, index) => (
+                                                        <SelectItem value={subject} key={index} className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">{subject}</SelectItem>
+                                                    ))}
                                                 </>
                                             }
 
@@ -109,7 +109,9 @@ const FileUploader = () => {
                                                 (coursework === "Internal_Assessment")
                                                 &&
                                                 <>
-                                                    <SelectItem value="Mathematics" className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">Mathematics</SelectItem>
+                                                    {internalAssessment.map((subject, index) => (
+                                                        <SelectItem value={subject} key={index} className="text-[#5b6170] font-['Bricolage-SemiBold'] cursor-pointer rounded-md">{subject}</SelectItem>
+                                                    ))}
                                                 </>
                                             }
                                         </SelectContent>
@@ -147,9 +149,7 @@ const FileUploader = () => {
                         </div>
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };
-
-export default FileUploader;

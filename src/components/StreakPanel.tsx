@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const StreakPanel = () => {
+export const StreakPanel = () => {
     return (
         <aside className="hidden w-20 sm:flex flex-col items-end gap-3 p-3 self-stretch">
             <div className="flex flex-col items-end justify-center gap-2 rounded-3xl">
@@ -40,5 +40,3 @@ const StreakPanel = () => {
         </aside>
     );
 };
-
-export default StreakPanel;

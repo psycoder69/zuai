@@ -79,7 +79,7 @@ const EvaluationScorecard = ({ fileId, fileMetadata }: { fileId: string, fileMet
 
             <div className="w-full flex flex-col items-start gap-2 self-stretch">
                 {
-                    evaluationResult
+                    evaluationResult && evaluationResult.criteriaArray && evaluationResult.criteriaArray.length > 0
                         ?
                         evaluationResult.criteriaArray.map((criteria, index) => (
                             <EvaluationCriteriaContainer key={index} criteria={criteria} index={index} />

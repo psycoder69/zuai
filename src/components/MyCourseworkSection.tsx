@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useFileMetadataStore } from "@/store/FileMetadataStore";
 import EvaluatedCourseworkPreview from "./EvaluatedCourseworkPreview";
 
-const MyCourseworkSection = () => {
+export const MyCourseworkSection = () => {
     const allMetadata = useFileMetadataStore(state => state.allMetadata);
 
     const [viewAll, setViewAll] = useState<boolean>(false);
@@ -55,5 +55,3 @@ const MyCourseworkSection = () => {
         </section>
     );
 };
-
-export default MyCourseworkSection;
